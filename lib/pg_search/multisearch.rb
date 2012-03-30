@@ -1,8 +1,8 @@
 module PgSearch
   module Multisearch
     REBUILD_SQL_TEMPLATE = <<-SQL
-INSERT INTO :documents_table (searchable_type, searchable_id, content)
-  SELECT :model_name AS searchable_type,
+INSERT INTO :documents_table (searchable_type, created_at, updated_at, searchable_id, content)
+  SELECT :model_name AS searchable_type,now(),now(),
          :model_table.id AS searchable_id,
          (
            :content_expressions
